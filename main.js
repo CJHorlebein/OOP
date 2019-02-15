@@ -82,16 +82,14 @@ class Deck {
         let values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
         let suits = ['S', 'C', 'H', 'D'];
         this.cards = [];
-        values.forEach(value => {
-            suits.forEach(suit => this.cards.push(new Card(value, suit)));
-        });
+        values.forEach(value => suits.forEach(suit => this.cards.push(new Card(value, suit))));
     }
     shuffle() {
         let deck = [];
         while (this.cards.length > 0) {
             let pos = Math.floor(Math.random() * this.cards.length);
             deck.push(this.cards[pos]);
-            this.cards = [...this.cards.slice(0, pos), ...this.cards.slice(pos + 1)];
+            this.cards.splice(pos, 1);
         }
         this.cards = [...deck];
     }
@@ -105,6 +103,7 @@ class Deck {
 
 let myDeck = new Deck();
 
+console.log(myDeck);
 myDeck.draw();
 myDeck.draw();
 myDeck.draw();
